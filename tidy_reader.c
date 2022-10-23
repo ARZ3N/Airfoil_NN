@@ -6,13 +6,18 @@
 
 
 int main(int argc, char* argv[]){
-    FILE *OGrdr, *NWwrtr;
+    
     printf(" > cmd line args entered: %d \n", argc);
     printf(" > program file: %s \n", argv[0]);
     printf(" > Airfoil file selected: %s \n", argv[1]);
+    char *file_name = (char*) malloc( sizeof(*(argv[1])) );
+    file_name = argv[1];
+    char *file_ext = ".dat";
+
     char *OGfilepath = "./coord_seligFmt/2032c.dat";
     char *NWfilepath = "./csv_coord_seligFmt/nw2032c.dat";
-    
+
+    FILE *OGrdr, *NWwrtr;
     
     if(OGrdr = fopen(OGfilepath, "r")){
         printf("|| input file opened successfully! \n");
@@ -67,7 +72,7 @@ int main(int argc, char* argv[]){
             chY[index] = lineptr[index + it + 1];
             fflush(OGrdr);
         }
-        
+        fflush(stdout);
         printf("Line: %d> chX: %s \t ", line, chX);
         fflush(stdout);
         printf("chY: %s \n", chY);
