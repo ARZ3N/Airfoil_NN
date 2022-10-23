@@ -5,9 +5,11 @@
 #define BUF_SIZE 1024
 
 
-int main(){
+int main(int argc, char* argv[]){
     FILE *OGrdr, *NWwrtr;
-    
+    printf(" > cmd line args entered: %d \n", argc);
+    printf(" > program file: %s \n", argv[0]);
+    printf(" > Airfoil file selected: %s \n", argv[1]);
     char *OGfilepath = "./coord_seligFmt/2032c.dat";
     char *NWfilepath = "./csv_coord_seligFmt/nw2032c.dat";
     
