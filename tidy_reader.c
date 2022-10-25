@@ -1,6 +1,7 @@
 #include<sys/types.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 #define BUF_SIZE 1024
 
@@ -10,16 +11,28 @@ int main(int argc, char* argv[]){
     printf(" > cmd line args entered: %d \n", argc);
     printf(" > program file: %s \n", argv[0]);
     printf(" > Airfoil file selected: %s \n", argv[1]);
+
     char *file_name = (char*) malloc( sizeof(*(argv[1])) );
     file_name = argv[1];
-    char *file_ext = ".dat";
+    
 
-    char *OGfilepath = "./coord_seligFmt/2032c.dat";
-    char *NWfilepath = "./csv_coord_seligFmt/nw2032c.dat";
+    char OGfilepath[] = "./coord_seligFmt/";
+    char NWfilepath[] = "./csv_coord_seligFmt/";
 
+    char *file_path = (char*) malloc(sizeof(char)*(strlen(OGfilepath) + strlen(file_name)));
+    char *nwfile_path = (char*) malloc(sizeof(char)*(strlen(NWfilepath) + strlen(file_name) + 2));
+
+    strcat(file_path, OGfilepath);
+    strcat(file_path, file_name);
+    
+    strcat(nwfile_path, NWfilepath);
+    strcat(nwfile_path, "nw");
+    strcat(nwfile_path, file_name);
+
+    
     FILE *OGrdr, *NWwrtr;
     
-    if(OGrdr = fopen(OGfilepath, "r")){
+    if(OGrdr = fopen(file_path, "r")){
         printf("|| input file opened successfully! \n");
         fflush(stdout);
     }
@@ -27,7 +40,7 @@ int main(int argc, char* argv[]){
         perror("fopen");
         exit(EXIT_FAILURE);
     }
-    if(NWwrtr = fopen(NWfilepath, "w")){
+    if(NWwrtr = fopen(nwfile_path, "w")){
         printf("|| output file opened succesfully! \n");
         fflush(stdout);
     }
