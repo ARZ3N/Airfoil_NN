@@ -1,10 +1,10 @@
 #! /bin/bash
 echo "< Inside dir- $PWD"
 # Entering the Dir containing airfoil files:
-cd ./coord_seligFmt
+cd ./Raw-data/C-files
 echo "< Inside dir- $PWD >"
 # Compiling C-program: tidy_reader.c
-gcc tidy_reader.c -o afreader
+gcc tidy_reader.c -o ../coord_seligFmt/afreader
 
 # Logging Files:
 success="exit_success.txt"
@@ -19,15 +19,16 @@ cat $failed
 
 #Counter variable:
 var=1 
-
+cd ../coord_seligFmt
+echo "< Inside dir- $PWD >"
 #Iterating over all .dat files in the directory:
 for FILE in *.dat; 
 do var=$(($var + 1))
 echo "File: $var";
 ./afreader $FILE
-PREV_FILE=$( tail -n 1 $success )
+PREV_FILE=$( tail -n 1 ../C-files/$success )
 if [[ "$PREV_FILE" != "$FILE" ]]; then
-    printf "$FILE\n" >> $failed
+    printf "$FILE\n" >> ../C-files/$failed
 fi
 #echo -n "#";
 done

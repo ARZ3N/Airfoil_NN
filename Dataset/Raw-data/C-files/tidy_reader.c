@@ -16,8 +16,8 @@ int main(int argc, char* argv[]){
     file_name = argv[1];
     
 
-    char OGfilepath[] = "../";
-    char NWfilepath[] = "../../ss_coord_Fmt/";
+    char OGfilepath[] = "../coord_seligFmt/";
+    char NWfilepath[] = "../../Stage_2/ss_coord_seligFmt/";
     
 
     char *file_path = (char*) malloc(sizeof(char)*(strlen(OGfilepath) + strlen(file_name)));
@@ -143,7 +143,7 @@ int main(int argc, char* argv[]){
     //free(nwfile_path);
     //printf(">> debug probe ... \n");
 
-    if(!(logger = fopen("../coord_seligFmt/exit_success.txt", "a"))){
+    if(!(logger = fopen("./exit_success.txt", "a"))){
         perror("fopen");
         exit(EXIT_FAILURE);
     }
